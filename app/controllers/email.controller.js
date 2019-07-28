@@ -36,6 +36,7 @@ exports.create = (req, res) => {
 
 // Retrieve and return all Email Addresses from the database.
 exports.findAll = (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     Email.find()
     .then(emails => {
         res.send(emails);
@@ -67,6 +68,7 @@ exports.findOne = (req, res) => {
         });
     });
 };
+
 
 // Update an Email Address identified by the Email Address in the request
 exports.update = (req, res) => {
