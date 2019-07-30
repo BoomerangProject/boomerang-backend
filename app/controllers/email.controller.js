@@ -2,6 +2,7 @@ const Email = require('../models/email.model.js');
 
 // Create and Save a new Email - ETH address pairing
 exports.create = (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     // Validate request
     if(!req.body.ethaddr) {
         return res.status(400).send({
@@ -49,6 +50,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Email Address entry with an email address
 exports.findOne = (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     Email.findById(req.params.email)
     .then(email => {
         if(!email) {
@@ -72,10 +74,11 @@ exports.findOne = (req, res) => {
 
 // Update an Email Address identified by the Email Address in the request
 exports.update = (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     // Validate Request
     if(!req.body.name || !req.body.desc) {
         return res.status(400).send({
-            message: "Name and description of individual or business can not be empty"
+            message: "Name and description of individual or business cannot be empty"
         });
     }
 
@@ -106,6 +109,7 @@ exports.update = (req, res) => {
 
 // Delete an Email Address with the specified Email Address in the request
 exports.delete = (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     Email.findByIdAndRemove(req.params.email)
     .then(email => {
         if(!email) {
